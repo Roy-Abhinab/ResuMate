@@ -3,7 +3,7 @@ type TitleProps = {
   description: string;
 }
 
-const Title = ( {title, description}: TitleProps ) => {
+const Title = ({ title, description }: TitleProps) => {
   return (
     <div className="text-center mt-6 text-slate-700">
       <h2 className="text-3xl sm:text-4xl font-medium">{title}</h2>
