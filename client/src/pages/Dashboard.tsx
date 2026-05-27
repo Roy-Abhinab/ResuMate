@@ -34,7 +34,13 @@ const Dashboard = () => {
 
    const editTitle = async (event: React.SubmitEvent<HTMLFormElement>) => {
       event.preventDefault()
-      //setEditResumeId('')
+   }
+
+   const deleteResume = async (resumeId: string) => {
+      const confirm = window.confirm('Are you sure you want to delete this resume? This action cannot be undone.')
+      if (confirm) {
+         setAllResumes(prev => prev.filter(resume => resume._id !== resumeId))
+      }
    }
 
    useEffect(() => {
@@ -71,7 +77,7 @@ const Dashboard = () => {
                            Updated on {new Date(resume.updatedAt).toLocaleDateString()}
                         </p>
                         <div onClick={e => e.stopPropagation()} className='absolute top-1 right-1 group-hover:flex hidden items-center'>
-                           <TrashIcon className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors' />
+                           <TrashIcon onClick={() => deleteResume(resume._id)} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors' />
                            <PencilIcon onClick={() => {setEditResumeId(resume._id); setTitle(resume.title)}} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colors' />
                         </div>
                      </button>
