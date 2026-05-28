@@ -1,10 +1,47 @@
-import { Mail, Phone, MapPin, Linkedin, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, LinkIcon, Globe } from "lucide-react";
 
-const ClassicTemplate = ({ data, accentColor }) => {
-    const formatDate = (dateStr) => {
+type ResumeData = {
+    personal_info?: {
+        full_name?: string;
+        email?: string;
+        phone?: string;
+        location?: string;
+        linkedin?: string;
+        website?: string;
+    };
+    professional_summary?: string;
+    experience?: Array<{
+        position: string;
+        company: string;
+        start_date: string;
+        end_date: string;
+        is_current: boolean;
+        description?: string;
+    }>;
+    project?: Array<{
+        name: string;
+        description: string;
+    }>;
+    education?: Array<{
+        degree: string;
+        field?: string;
+        institution: string;
+        gpa?: string;
+        graduation_date: string;
+    }>;
+    skills?: string[];
+};
+
+type ClassicTemplateProps = {
+    data: ResumeData;
+    accentColor: string;
+};
+
+const ClassicTemplate = ({ data, accentColor }: ClassicTemplateProps) => {
+    const formatDate = (dateStr: string) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
-        return new Date(year, month - 1).toLocaleDateString("en-US", {
+        return new Date(parseInt(year), parseInt(month) - 1).toLocaleDateString("en-US", {
             year: "numeric",
             month: "short"
         });
@@ -39,7 +76,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
                     )}
                     {data.personal_info?.linkedin && (
                         <div className="flex items-center gap-1">
-                            <Linkedin className="size-4" />
+                            <LinkIcon className="size-4" />
                             <span className="break-all">{data.personal_info.linkedin}</span>
                         </div>
                     )}

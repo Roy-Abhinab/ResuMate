@@ -1,10 +1,48 @@
+
 import { Mail, Phone, MapPin } from "lucide-react";
 
-const MinimalImageTemplate = ({ data, accentColor }) => {
-    const formatDate = (dateStr) => {
+type ResumeData = {
+    personal_info?: {
+        full_name?: string;
+        profession?: string;
+        image?: string | File | null;
+        email?: string;
+        phone?: string;
+        location?: string;
+    };
+    professional_summary?: string;
+    experience?: Array<{
+        position: string;
+        company: string;
+        start_date: string;
+        end_date: string;
+        is_current: boolean;
+        description?: string;
+    }>;
+    project?: Array<{
+        name: string;
+        type?: string;
+        description?: string;
+    }>;
+    education?: Array<{
+        degree: string;
+        institution: string;
+        graduation_date: string;
+    }>;
+    skills?: string[];
+};
+
+type MinimalImageTemplateProps = {
+    data: ResumeData;
+    accentColor: string;
+};
+
+const MinimalImageTemplate = ({ data, accentColor }: MinimalImageTemplateProps) => {
+    
+    const formatDate = (dateStr: string) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
-        return new Date(year, month - 1).toLocaleDateString("en-US", {
+        return new Date(parseInt(year), parseInt(month) - 1).toLocaleDateString("en-US", {
             year: "numeric",
             month: "short",
         });
@@ -23,7 +61,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     ) : (
                         data.personal_info?.image && typeof data.personal_info.image === 'object' ? (
                             <div className="mb-6">
-                                <img src={URL.createObjectURL(data.personal_info.image)} alt="Profile" className="w-32 h-32 object-cover rounded-full mx-auto" />
+                                <img src={URL.createObjectURL(data.personal_info.image as File)} alt="Profile" className="w-32 h-32 object-cover rounded-full mx-auto" />
                             </div>
                         ) : null
                     )}
@@ -41,7 +79,6 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
 
                 {/* Left Sidebar */}
                 <aside className="col-span-1 border-r border-zinc-400 p-6 pt-0">
-
 
                     {/* Contact */}
                     <section className="mb-8">
@@ -184,6 +221,5 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
         </div>
     );
 }
-
 
 export default MinimalImageTemplate;
