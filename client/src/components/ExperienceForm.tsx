@@ -71,40 +71,17 @@ const ExperienceForm = ({ data, onChange }: ExperienceFormProps) => {
 
                      <div className='grid md:grid-cols-2 gap-3'>
 
-                        <input
-                           value={experience.company || ""}
-                           onChange={(e) => updateExperience(index, "company", e.target.value)}
-                           type="text"
-                           placeholder="Company Name"
-                           className="px-3 py-2 text-sm rounded-lg"
-                        />
+                        <input value={experience.company || ""} onChange={(e) => updateExperience(index, "company", e.target.value)} type="text" placeholder="Company Name" className="px-3 py-2 text-sm rounded-lg" />
 
-                        <input
-                           value={experience.position || ""}
-                           onChange={(e) => updateExperience(index, "position", e.target.value)}
-                           type="text"
-                           placeholder="Job Title"
-                           className="px-3 py-2 text-sm rounded-lg"
-                        />
+                        <input value={experience.position || ""} onChange={(e) => updateExperience(index, "position", e.target.value)} type="text" placeholder="Job Title" className="px-3 py-2 text-sm rounded-lg" />
 
-                        <input
-                           value={experience.start_date || ""}
-                           onChange={(e) => updateExperience(index, "start_date", e.target.value)}
-                           type="month"
-                           className="px-3 py-2 text-sm rounded-lg"
-                        />
+                        <input value={experience.start_date || ""} onChange={(e) => updateExperience(index, "start_date", e.target.value)} type="month" className="px-3 py-2 text-sm rounded-lg" />
 
-                        <input
-                           value={experience.end_date || ""}
-                           onChange={(e) => updateExperience(index, "end_date", e.target.value)}
-                           type="month"
-                           disabled={experience.is_current}
-                           className="px-3 py-2 text-sm rounded-lg disabled:bg-gray-100"
-                        />
+                        <input value={experience.end_date || ""} onChange={(e) => updateExperience(index, "end_date", e.target.value)} type="month" disabled={experience.is_current} className="px-3 py-2 text-sm rounded-lg disabled:bg-gray-100" />
                      </div>
 
                      <label className='flex items-center gap-2'>
-                        <input type="checkbox" checked={experience.is_current || false} onChange={(e) => updateExperience(index, "is_current", e.target.checked ? true : false)} className='rounded border-gray-300 text-blue-600 focus:ring-blue-500'/>
+                        <input type="checkbox" checked={experience.is_current || false} onChange={(e) => updateExperience(index, "is_current", e.target.checked ? true : false)} className='rounded border-gray-300 text-blue-600 focus:ring-blue-500' />
                         <span className='text-sm text-gray-700'>Currently working here</span>
                      </label>
 
@@ -116,7 +93,7 @@ const ExperienceForm = ({ data, onChange }: ExperienceFormProps) => {
                               Enhance with AI
                            </button>
                         </div>
-                        <textarea value={experience.description || ""} onChange={(e) => updateExperience(index, "description", e.target.value)} rows={4} className="w-full text-sm px-3 py-2 rounded-lg resize-none"  placeholder="Describe your key responsibilities and achievements..."/>
+                        <textarea value={experience.description || ""} onChange={(e) => updateExperience(index, "description", e.target.value)} rows={4} className="w-full text-sm px-3 py-2 rounded-lg resize-none" placeholder="Describe your key responsibilities and achievements..." />
                      </div>
                   </div>
                ))}
