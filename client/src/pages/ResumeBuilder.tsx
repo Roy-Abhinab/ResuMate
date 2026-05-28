@@ -6,6 +6,10 @@ import PersonalInfoForm from '../components/PersonalInfoForm'
 import ResumePreview from '../components/ResumePreview'
 import TemplateSelector from '../components/TemplateSelector'
 import ColorPicker from '../components/ColorPicker'
+import ProfessionalSummaryForm from '../components/ProfessionalSummaryForm'
+import ExperienceForm from '../components/ExperienceForm'
+import EducationForm from '../components/EducationForm'
+import ProjectForm from '../components/ProjectForm'
 
 const ResumeBuilder = () => {
 
@@ -91,6 +95,18 @@ const ResumeBuilder = () => {
                      <div className='space-y-6'>
                         {activeSection.id === 'personal' && (
                            <PersonalInfoForm data={resumeData.personal_info} onChange={(data: any) => setResumeData((prev: any) => ({ ...prev, personal_info: data }))} removeBackground={removeBackground} setRemoveBackground={setRemoveBackground} />
+                        )}
+                        {activeSection.id === 'summary' && (
+                           <ProfessionalSummaryForm data={resumeData.professional_summary} onChange={(value) => setResumeData((prev: any) => ({ ...prev, professional_summary: value }))} setResumeData={setResumeData} />
+                        )}
+                        {activeSection.id === 'experience' && (
+                           <ExperienceForm data={resumeData.experience} onChange={(value) => setResumeData((prev: any) => ({ ...prev, experience: value }))} />
+                        )}
+                        {activeSection.id === 'education' && (
+                           <EducationForm data={resumeData.education} onChange={(value) => setResumeData((prev: any) => ({ ...prev, education: value }))} />
+                        )}
+                        {activeSection.id === 'projects' && (
+                           <ProjectForm data={resumeData.project} onChange={(value) => setResumeData((prev: any) => ({ ...prev, project: value }))} />
                         )}
                      </div>
 
