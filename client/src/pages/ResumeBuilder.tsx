@@ -140,7 +140,6 @@ const ResumeBuilder = () => {
 
                      <button className='bg-linear-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm'>
                         Save Changes
-                        // Saving is currently automatic, so this button doesn't do anything.
                      </button>
 
                   </div>
