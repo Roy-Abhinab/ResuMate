@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import User from "../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { AuthRequest } from "../middlewares/auth"; 
+import { AuthRequest } from "../middlewares/auth";
 import Resume from "../models/Resume";
 
 const generateToken = (userId: string) => {
@@ -30,7 +30,7 @@ export const registerUser = async (req: Request, res: Response): Promise<Respons
       newUser.password = undefined as any;
 
       return res.status(201).json({ message: "User created successfully", token, user: newUser });
-      
+
    } catch (error: any) {
       return res.status(400).json({ message: error.message });
    }
@@ -53,7 +53,7 @@ export const loginUser = async (req: Request, res: Response): Promise<Response> 
       const token = generateToken(user._id.toString());
       user.password = undefined as any;
 
-      return res.status(200).json({ message: "Login successful", token, user});
+      return res.status(200).json({ message: "Login successful", token, user });
 
    } catch (error: any) {
       return res.status(400).json({ message: error.message });
@@ -79,13 +79,13 @@ export const getUserById = async (req: AuthRequest, res: Response): Promise<Resp
 
 
 export const getUserResumes = async (req: AuthRequest, res: Response): Promise<Response> => {
-    try {
-        const userId = req.userId as string;
+   try {
+      const userId = req.userId as string;
 
-        const resumes = await Resume.find({ userId });
-        return res.status(200).json({ resumes });
-    } catch (error: any) {
-        return res.status(400).json({ message: error.message });
-    }
+      const resumes = await Resume.find({ userId });
+      return res.status(200).json({ resumes });
+   } catch (error: any) {
+      return res.status(400).json({ message: error.message });
+   }
 }
 
