@@ -94,7 +94,7 @@ export const updateResume = async (req: AuthRequest, res: Response): Promise<Res
 
          const imageBufferData = fs.createReadStream(image.path);
 
-         const res = await imagekit.files.upload({
+         const uploadResult = await imagekit.files.upload({
             file: imageBufferData,
             fileName: 'resume.png',
             folder: 'user-resumes',
@@ -103,7 +103,7 @@ export const updateResume = async (req: AuthRequest, res: Response): Promise<Res
             }
          });
 
-         resumeDataCopy.personal_info.image = res.url;
+         resumeDataCopy.personal_info.image = uploadResult.url;
       }
 
 
