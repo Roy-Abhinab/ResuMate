@@ -9,18 +9,19 @@ import { useDispatch } from 'react-redux'
 import api from './configs/api'
 import { login, setLoading } from './app/features/authSlice'
 import { useEffect } from 'react'
+import { Toaster } from 'react-hot-toast'
 
 
 
 const App = () => {
 
    const dispatch = useDispatch();
-   
+
    const getUserData = async () => {
       const token = localStorage.getItem('token');
       try {
          if (token) {
-            const { data } = await api.get('/api/users/data', {headers: {Authorization: token}})
+            const { data } = await api.get('/api/users/data', { headers: { Authorization: token } })
 
             if (data.user) {
                dispatch(login({ token, user: data.user }))
@@ -42,6 +43,7 @@ const App = () => {
 
    return (
       <>
+         <Toaster />
          <Routes>
             <Route path='/' element={<Home />} />
 

@@ -1,8 +1,13 @@
 import { LockIcon, Mail, User2Icon } from "lucide-react"
 import React from "react"
+import api from "../configs/api"
+import { useDispatch } from "react-redux"
+import { login } from "../app/features/authSlice"
+import toast from "react-hot-toast"
 
 const Login = () => {
 
+   const dispatch = useDispatch()
    const query = new URLSearchParams(window.location.search)
    const urlState = query.get("state")
 
@@ -16,6 +21,18 @@ const Login = () => {
 
    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
       e.preventDefault()
+
+      try {
+         const { data } = await api.post(`/api/users/${state === "login" ? "login" : "register"}`, formData)
+         dispatch(login(data))
+         localStorage.setItem('token', data.token)
+         toast.success(data.message)
+
+      } catch (error) {
+         toast((error as any)?.response?.data?.message || (error as Error).message)
+         console.log((error as Error).message)
+      }
+
 
    }
 
