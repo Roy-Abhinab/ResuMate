@@ -135,7 +135,7 @@ export const uploadResume = async (req: AuthRequest, res: Response): Promise<Res
 
       const newResume = await Resume.create({ userId, title, ...parsedData });
 
-      return res.json({ resumeId: newResume._id });
+      return res.json({ resume: newResume });
 
    } catch (error: any) {
       return res.status(400).json({ message: error.message });
